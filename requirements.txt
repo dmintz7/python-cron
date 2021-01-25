@@ -1,3 +1,2 @@
 schedule==0.6.0
-requests==2.21.0
 GitPython==3.1.12
