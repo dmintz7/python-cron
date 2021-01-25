@@ -1,0 +1,4 @@
+#Every x minutes,*/2,,
+#Every day at TIME,5:00,,
+#Every hour at minute x,545/*,,
+#Name,URL,Cron,Parameter, Run at Start

@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  cron:
+    build: .
+    image: dmintz7/cron
+    container_name: cron
+    environment:
+      - LOG_LEVEL=INFO
+    volumes:
+      - /Path/To/Config:/app/config
+      - /Path/To/Logs:/app/logs
