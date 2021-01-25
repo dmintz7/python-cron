@@ -1,7 +1,7 @@
 import os, shutil, git, schedule, logging, sys, time, threading, glob
+from logging.handlers import RotatingFileHandler
 
 file = "/app/config/apps.csv"
-LOG_LEVEL = os.environ['LOG_LEVEL']
 
 extra = {'folder_name': os.path.dirname(os.path.abspath(__file__)).split("/")[-1]}
 formatter = logging.Formatter('%(asctime)s - %(levelname)10s - %(folder_name)15s:%(module)15s:%(funcName)30s:%(lineno)5s - %(message)s')
@@ -10,9 +10,9 @@ logger.setLevel(logging.DEBUG)
 consoleHandler = logging.StreamHandler(sys.stdout)
 consoleHandler.setFormatter(formatter)
 logger.addHandler(consoleHandler)
+fileHandler = RotatingFileHandler(os.environ['LOG_FOLDER'] + '/python-cron.log', maxBytes=1024 * 1024 * 1, backupCount=1)
+logger.setLevel(os.environ['LOG_LEVEL'])
 logging.getLogger("requests").setLevel(logging.WARNING)
-logger.setLevel(config.LOG_LEVEL)
-fileHandler = RotatingFileHandler(config.LOG_FOLDER + '/python-cron.log', maxBytes=1024 * 1024 * 1, backupCount=1)
 fileHandler.setFormatter(formatter)
 logger.addHandler(fileHandler)
 logger = logging.LoggerAdapter(logger, extra)
