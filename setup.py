@@ -36,6 +36,7 @@ with open(file) as f:
 				(description, url, cron, param, autostart)= x.split(',')
 				name = url.split("/")[-1].split(".")[0]
 				folder =  "/app/repos/" + name
+				cron = cron.strip()
 				
 				try:
 					git.Git("/app/repos/").clone(url)
@@ -79,7 +80,6 @@ with open(file) as f:
 			pass
 		except Exception as e:
 			logger.error("Row Incorrectly Configured, %s" % x)
-			
 			
 logger.info("Repos Gathered and Scheduler Created")
 while True:
